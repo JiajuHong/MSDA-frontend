@@ -1,6 +1,6 @@
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { Button, message, Avatar, Modal, Radio } from 'antd';
+import { Button, message, Avatar, Modal, Radio , Input} from 'antd';
 import { useRef, useState } from 'react';
 import {
   addUserUsingPOST,
@@ -174,21 +174,59 @@ const TableList: React.FC = () => {
     {
       title: '用户账户',
       dataIndex: 'userAccount',
-      copyable: true,
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请输入账号',
+          },
+          {
+            min: 4,
+            message: '账号不能小于4位',
+          },
+        ],
+      },
     },
     {
       title: '用户名',
       dataIndex: 'userName',
-      copyable: true,
-      search: false,
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请输入用户名',
+          },
+        ],
+      },
     },
     {
       title: '密码',
       dataIndex: 'userPassword',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请输入密码',
+          },
+          {
+            min: 8,
+            message: '密码长度不能少于8位',
+          },
+        ],
+      },
+      renderFormItem: () => <Input.Password />,
     },
     {
       title: '性别',
       dataIndex: 'gender',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请选择性别',
+          },
+        ],
+      },
       valueType: 'select',
       valueEnum: {
         0: '男',
@@ -207,6 +245,14 @@ const TableList: React.FC = () => {
       title: '角色',
       dataIndex: 'userRole',
       valueType: 'select',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请选择角色',
+          },
+        ],
+      },
       valueEnum: {
         user: { text: '普通用户', status: 'Default' },
         admin: { text: '管理员', status: 'Success' },
@@ -221,6 +267,98 @@ const TableList: React.FC = () => {
     },
   ];
 
+  const updateUserColumns: ProColumns<API.UserAddRequest>[] = [
+    {
+      title: '用户账户',
+      dataIndex: 'userAccount',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请输入账号',
+          },
+          {
+            min: 4,
+            message: '账号不能小于4位',
+          },
+        ],
+      },
+    },
+    {
+      title: '用户名',
+      dataIndex: 'userName',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请输入用户名',
+          },
+        ],
+      },
+    },
+    {
+      title: '密码',
+      dataIndex: 'userPassword',
+      formItemProps: {
+        rules: [
+          {
+            min: 8,
+            message: '密码长度不能少于8位',
+          },
+        ],
+      },
+      renderFormItem: () => <Input.Password />,
+    },
+    {
+      title: '性别',
+      dataIndex: 'gender',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请选择性别',
+          },
+        ],
+      },
+      valueType: 'select',
+      valueEnum: {
+        0: '男',
+        1: '女',
+      },
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      renderFormItem: (item, { value, onChange }, form) => (
+        <Radio.Group value={form.getFieldValue(item.dataIndex)}>
+          <Radio value={0}>男</Radio>
+          <Radio value={1}>女</Radio>
+        </Radio.Group>
+      ),
+    },
+
+    {
+      title: '角色',
+      dataIndex: 'userRole',
+      valueType: 'select',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请选择角色',
+          },
+        ],
+      },
+      valueEnum: {
+        user: { text: '普通用户', status: 'Default' },
+        admin: { text: '管理员', status: 'Success' },
+      },
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      renderFormItem: (item, { value, onChange }, form) => (
+        <Radio.Group value={form.getFieldValue(item.dataIndex)}>
+          <Radio value={'user'}>普通用户</Radio>
+          <Radio value={'admin'}>管理员</Radio>
+        </Radio.Group>
+      ),
+    },
+  ];
   return (
     <PageContainer>
       <ProTable<API.UserVO>
@@ -295,7 +433,7 @@ const TableList: React.FC = () => {
         ]}
       />
       <UpdateModal
-        columns={addUserColumns}
+        columns={updateUserColumns}
         onSubmit={async (value) => {
           const success = await handleUpdate(value);
           if (success) {

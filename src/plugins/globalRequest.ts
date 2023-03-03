@@ -50,8 +50,8 @@ request.interceptors.response.use(async (response): Promise<any> => {
         redirect: location.pathname,
       }),
     })
-  }else {
-    message.error(res.message);
+  } else {
+    throw new Error(res.message);
   }
   return response;
 });
