@@ -1,5 +1,3 @@
-import { UserOutlined } from '@ant-design/icons';
-
 export default [
   {
     path: '/user',
