@@ -1,28 +1,27 @@
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { Button, message, Avatar, Modal, Radio , Input} from 'antd';
+import { Button, message,Modal} from 'antd';
 import { useRef, useState } from 'react';
-import {
-  addUserUsingPOST,
-  deleteUserUsingPOST,
-  listUserUsingGET,
-  updateUserUsingPOST,
-} from '@/services/test/userController';
 import { PlusOutlined } from '@ant-design/icons';
-import CreateModal from '@/pages/TableList/components/CreateModal';
+import CreateModal from './components/CreateModal';
 import UpdateModal from './components/UpdateModal';
+import {
+  addWorkGroupUsingPOST,
+  deleteWorkGroupUsingPOST, listWorkGroupUsingGET,
+  updateWorkGroupUsingPOST
+} from "@/services/test/groupController";
 
 const TableList: React.FC = () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [showDetail] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
-  const [currentRow, setCurrentRow] = useState<API.UserVO>();
+  const [currentRow, setCurrentRow] = useState<API.WorkGroup>();
 
-  const handleAdd = async (fields: API.UserRegisterRequest) => {
+  const handleAdd = async (fields: API.WorkGroupAddRequest) => {
     const hide = message.loading('正在添加');
     try {
-      await addUserUsingPOST({
+      await addWorkGroupUsingPOST({
         ...fields,
       });
       hide();
@@ -37,7 +36,7 @@ const TableList: React.FC = () => {
     }
   };
 
-  const handleRemove = async (record: API.UserVO) => {
+  const handleRemove = async (record: API.WorkGroup) => {
     Modal.confirm({
       title: '确认删除？',
       content: '删除后不可恢复',
@@ -48,7 +47,7 @@ const TableList: React.FC = () => {
         if (!record) return true;
 
         try {
-          await deleteUserUsingPOST({
+          await deleteWorkGroupUsingPOST({
             id: record.id,
           });
           hide();
@@ -64,13 +63,13 @@ const TableList: React.FC = () => {
     });
   };
 
-  const handleUpdate = async (fields: API.UserVO) => {
+  const handleUpdate = async (fields: API.WorkGroupUpdateRequest) => {
     if (!currentRow) {
       return;
     }
     const hide = message.loading('修改中');
     try {
-      await updateUserUsingPOST({
+      await updateWorkGroupUsingPOST({
         id: currentRow.id,
         ...fields,
       });
@@ -84,61 +83,32 @@ const TableList: React.FC = () => {
     }
   };
 
-  const columns: ProColumns<API.UserVO>[] = [
+  const columns: ProColumns<API.WorkGroup>[] = [
     {
       title: 'id',
       dataIndex: 'id',
       search: false,
     },
     {
-      title: '用户名',
-      dataIndex: 'userName',
+      title: '工作组名',
+      dataIndex: 'name',
       copyable: true,
       search: false,
     },
     {
-      title: '用户账户',
-      dataIndex: 'userAccount',
+      title: '组管理员',
+      dataIndex: 'admin',
       copyable: true,
-    },
-    {
-      title: '头像',
-      dataIndex: 'userAvatar',
-      search: false,
-      render: (_, record) => (
-        <div>
-          {/*<Image src={record.userAvatar} width={50} height={50}/>*/}
-          <Avatar size="large" src={record.userAvatar} />
-        </div>
-      ),
-    },
-    {
-      title: '性别',
-      dataIndex: 'gender',
-      valueType: 'select',
-      valueEnum: {
-        '0': { text: '男' },
-        '1': { text: '女' },
-      },
-    },
-    {
-      title: '角色',
-      dataIndex: 'userRole',
-      valueType: 'select',
-      valueEnum: {
-        user: { text: '普通用户', status: 'Default' },
-        admin: { text: '管理员', status: 'Success' },
-      },
     },
     {
       title: '创建时间',
-      dataIndex: 'createTime',
+      dataIndex: 'created_time',
       valueType: 'dateTime',
       search: false,
     },
     {
       title: '更新时间',
-      dataIndex: 'updateTime',
+      dataIndex: 'updated_time',
       valueType: 'dateTime',
       search: false,
     },
@@ -170,204 +140,68 @@ const TableList: React.FC = () => {
     },
   ];
 
-  const addUserColumns: ProColumns<API.UserAddRequest>[] = [
+  const addGroupColumns: ProColumns<API.WorkGroupAddRequest>[] = [
     {
-      title: '用户账户',
-      dataIndex: 'userAccount',
+      title: '工作组名',
+      dataIndex: 'name',
       formItemProps: {
         rules: [
           {
             required: true,
-            message: '请输入账号',
+            message: '请输入工作组名',
           },
+        ],
+      },
+    },
+    {
+      title: '组管理员',
+      dataIndex: 'admin',
+      formItemProps: {
+        rules: [
           {
-            min: 4,
-            message: '账号不能小于4位',
+            required: true,
+            message: '请输入组管理员',
+          },
+        ],
+      },
+    },
+  ];
+
+  const updateGroupColumns: ProColumns<API.WorkGroupUpdateRequest>[] = [
+    {
+      title: '工作组名',
+      dataIndex: 'name',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '请输入工作组名',
           },
         ],
       },
     },
     {
-      title: '用户名',
-      dataIndex: 'userName',
+      title: '组管理员',
+      dataIndex: 'admin',
       formItemProps: {
         rules: [
           {
             required: true,
-            message: '请输入用户名',
+            message: '请输入组管理员',
           },
         ],
       },
-    },
-    {
-      title: '密码',
-      dataIndex: 'userPassword',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '请输入密码',
-          },
-          {
-            min: 8,
-            message: '密码长度不能少于8位',
-          },
-        ],
-      },
-      renderFormItem: () => <Input.Password />,
-    },
-    {
-      title: '性别',
-      dataIndex: 'gender',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '请选择性别',
-          },
-        ],
-      },
-      valueType: 'select',
-      valueEnum: {
-        0: '男',
-        1: '女',
-      },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      renderFormItem: (item, { value, onChange }, form) => (
-        <Radio.Group value={form.getFieldValue(item.dataIndex)}>
-          <Radio value={0}>男</Radio>
-          <Radio value={1}>女</Radio>
-        </Radio.Group>
-      ),
-    },
-
-    {
-      title: '角色',
-      dataIndex: 'userRole',
-      valueType: 'select',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '请选择角色',
-          },
-        ],
-      },
-      valueEnum: {
-        user: { text: '普通用户', status: 'Default' },
-        admin: { text: '管理员', status: 'Success' },
-      },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      renderFormItem: (item, { value, onChange }, form) => (
-        <Radio.Group value={form.getFieldValue(item.dataIndex)}>
-          <Radio value={'user'}>普通用户</Radio>
-          <Radio value={'admin'}>管理员</Radio>
-        </Radio.Group>
-      ),
-    },
-  ];
-
-  const updateUserColumns: ProColumns<API.UserAddRequest>[] = [
-    {
-      title: '用户账户',
-      dataIndex: 'userAccount',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '请输入账号',
-          },
-          {
-            min: 4,
-            message: '账号不能小于4位',
-          },
-        ],
-      },
-    },
-    {
-      title: '用户名',
-      dataIndex: 'userName',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '请输入用户名',
-          },
-        ],
-      },
-    },
-    {
-      title: '密码',
-      dataIndex: 'userPassword',
-      formItemProps: {
-        rules: [
-          {
-            min: 8,
-            message: '密码长度不能少于8位',
-          },
-        ],
-      },
-      renderFormItem: () => <Input.Password />,
-    },
-    {
-      title: '性别',
-      dataIndex: 'gender',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '请选择性别',
-          },
-        ],
-      },
-      valueType: 'select',
-      valueEnum: {
-        0: '男',
-        1: '女',
-      },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      renderFormItem: (item, { value, onChange }, form) => (
-        <Radio.Group value={form.getFieldValue(item.dataIndex)}>
-          <Radio value={0}>男</Radio>
-          <Radio value={1}>女</Radio>
-        </Radio.Group>
-      ),
-    },
-
-    {
-      title: '角色',
-      dataIndex: 'userRole',
-      valueType: 'select',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '请选择角色',
-          },
-        ],
-      },
-      valueEnum: {
-        user: { text: '普通用户', status: 'Default' },
-        admin: { text: '管理员', status: 'Success' },
-      },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      renderFormItem: (item, { value, onChange }, form) => (
-        <Radio.Group value={form.getFieldValue(item.dataIndex)}>
-          <Radio value={'user'}>普通用户</Radio>
-          <Radio value={'admin'}>管理员</Radio>
-        </Radio.Group>
-      ),
     },
   ];
   return (
     <PageContainer>
-      <ProTable<API.UserVO>
+      <ProTable<API.WorkGroup>
         columns={columns}
         actionRef={actionRef}
         cardBordered
         request={async (params, sort, filter) => {
           console.log(sort, filter);
-          const res = await listUserUsingGET({ ...params });
+          const res = await listWorkGroupUsingGET({ ...params });
           if (res) {
             return {
               data: res || [],
@@ -433,7 +267,7 @@ const TableList: React.FC = () => {
         ]}
       />
       <UpdateModal
-        columns={updateUserColumns}
+        columns={updateGroupColumns}
         onSubmit={async (value) => {
           const success = await handleUpdate(value);
           if (success) {
@@ -455,7 +289,7 @@ const TableList: React.FC = () => {
       />
 
       <CreateModal
-        columns={addUserColumns}
+        columns={addGroupColumns}
         onCancel={() => {
           handleModalVisible(false);
         }}

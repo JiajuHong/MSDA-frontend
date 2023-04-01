@@ -2,9 +2,12 @@
 /* eslint-disable */
 import request from '@/plugins/globalRequest';
 
-/** addPost POST /api/post/add */
-export async function addPostUsingPOST(body: API.PostAddRequest, options?: { [key: string]: any }) {
-  return request<API.BaseResponselong>('/api/post/add', {
+/** addWorkGroup POST /api/group/add */
+export async function addWorkGroupUsingPOST(
+  body: API.WorkGroupAddRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponselong>('/api/group/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -14,12 +17,12 @@ export async function addPostUsingPOST(body: API.PostAddRequest, options?: { [ke
   });
 }
 
-/** deletePost POST /api/post/delete */
-export async function deletePostUsingPOST(
+/** deleteWorkGroup POST /api/group/delete */
+export async function deleteWorkGroupUsingPOST(
   body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseboolean>('/api/post/delete', {
+  return request<API.BaseResponseboolean>('/api/group/delete', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -29,13 +32,13 @@ export async function deletePostUsingPOST(
   });
 }
 
-/** getPostById GET /api/post/get */
-export async function getPostByIdUsingGET(
+/** getWorkGroupById GET /api/group/get */
+export async function getWorkGroupByIdUsingGET(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.getPostByIdUsingGETParams,
+  params: API.getWorkGroupByIdUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePost>('/api/post/get', {
+  return request<API.BaseResponseWorkGroup>('/api/group/get', {
     method: 'GET',
     params: {
       ...params,
@@ -44,13 +47,13 @@ export async function getPostByIdUsingGET(
   });
 }
 
-/** listPost GET /api/post/list */
-export async function listPostUsingGET(
+/** listWorkGroup GET /api/group/list */
+export async function listWorkGroupUsingGET(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.listPostUsingGETParams,
+  params: API.listWorkGroupUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseListPost>('/api/post/list', {
+  return request<API.BaseResponseListWorkGroup>('/api/group/list', {
     method: 'GET',
     params: {
       ...params,
@@ -59,13 +62,13 @@ export async function listPostUsingGET(
   });
 }
 
-/** listPostByPage GET /api/post/list/page */
-export async function listPostByPageUsingGET(
+/** listWorkGroupByPage GET /api/group/list/page */
+export async function listWorkGroupByPageUsingGET(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.listPostByPageUsingGETParams,
+  params: API.listWorkGroupByPageUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePagePost>('/api/post/list/page', {
+  return request<API.BaseResponsePageWorkGroup>('/api/group/list/page', {
     method: 'GET',
     params: {
       ...params,
@@ -74,12 +77,12 @@ export async function listPostByPageUsingGET(
   });
 }
 
-/** updatePost POST /api/post/update */
-export async function updatePostUsingPOST(
-  body: API.PostUpdateRequest,
+/** updateWorkGroup POST /api/group/update */
+export async function updateWorkGroupUsingPOST(
+  body: API.WorkGroupUpdateRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseboolean>('/api/post/update', {
+  return request<API.BaseResponseboolean>('/api/group/update', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

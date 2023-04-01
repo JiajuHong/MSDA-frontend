@@ -13,7 +13,7 @@ const Settings: LayoutSettings & {
   fixSiderbar: true,
   title: 'SDA平台',
   pwa: false,
-  logo: 'https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/13837/kyk4c0h1hla.jpg',
+  logo: 'https://tuchuang-1310600455.cos.ap-nanjing.myqcloud.com/jiaju/202303201447121.webp',
   headerHeight: 48,
   splitMenus: false,
 };

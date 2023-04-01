@@ -42,7 +42,7 @@ request.interceptors.response.use(async (response): Promise<any> => {
   }
 
   if (res.code === 40100) {
-    message.error('请先登录');
+    message.warn('请先登录');
     // @ts-ignore
     history.replace({
       pathname: '/user/login',

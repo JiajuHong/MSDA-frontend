@@ -5,18 +5,6 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponseInterfaceInfo = {
-    code?: number;
-    data?: InterfaceInfo;
-    message?: string;
-  };
-
-  type BaseResponseListInterfaceInfo = {
-    code?: number;
-    data?: InterfaceInfo[];
-    message?: string;
-  };
-
   type BaseResponseListPost = {
     code?: number;
     data?: Post[];
@@ -29,15 +17,15 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponselong = {
+  type BaseResponseListWorkGroup = {
     code?: number;
-    data?: number;
+    data?: WorkGroup[];
     message?: string;
   };
 
-  type BaseResponsePageInterfaceInfo = {
+  type BaseResponselong = {
     code?: number;
-    data?: PageInterfaceInfo;
+    data?: number;
     message?: string;
   };
 
@@ -50,6 +38,12 @@ declare namespace API {
   type BaseResponsePageUserVO = {
     code?: number;
     data?: PageUserVO;
+    message?: string;
+  };
+
+  type BaseResponsePageWorkGroup = {
+    code?: number;
+    data?: PageWorkGroup;
     message?: string;
   };
 
@@ -71,12 +65,13 @@ declare namespace API {
     message?: string;
   };
 
-  type DeleteRequest = {
-    id?: number;
+  type BaseResponseWorkGroup = {
+    code?: number;
+    data?: WorkGroup;
+    message?: string;
   };
 
-  type getInterfaceInfoByIdUsingGETParams = {
-    /** id */
+  type DeleteRequest = {
     id?: number;
   };
 
@@ -90,73 +85,9 @@ declare namespace API {
     id?: number;
   };
 
-  type InterfaceInfo = {
-    createTime?: string;
-    description?: string;
+  type getWorkGroupByIdUsingGETParams = {
+    /** id */
     id?: number;
-    isDelete?: number;
-    method?: string;
-    name?: string;
-    requestHeader?: string;
-    responseHeader?: string;
-    status?: number;
-    updateTime?: string;
-    url?: string;
-    userId?: number;
-  };
-
-  type InterfaceInfoAddRequest = {
-    description?: string;
-    method?: string;
-    name?: string;
-    requestHeader?: string;
-    responseHeader?: string;
-    url?: string;
-  };
-
-  type InterfaceInfoUpdateRequest = {
-    description?: string;
-    id?: number;
-    method?: string;
-    name?: string;
-    requestHeader?: string;
-    responseHeader?: string;
-    status?: number;
-    url?: string;
-  };
-
-  type listInterfaceInfoByPageUsingGETParams = {
-    current?: number;
-    description?: string;
-    id?: number;
-    isDelete?: number;
-    method?: string;
-    name?: string;
-    pageSize?: number;
-    requestHeader?: string;
-    responseHeader?: string;
-    sortField?: string;
-    sortOrder?: string;
-    status?: number;
-    url?: string;
-    userId?: number;
-  };
-
-  type listInterfaceInfoUsingGETParams = {
-    current?: number;
-    description?: string;
-    id?: number;
-    isDelete?: number;
-    method?: string;
-    name?: string;
-    pageSize?: number;
-    requestHeader?: string;
-    responseHeader?: string;
-    sortField?: string;
-    sortOrder?: string;
-    status?: number;
-    url?: string;
-    userId?: number;
   };
 
   type listPostByPageUsingGETParams = {
@@ -194,6 +125,7 @@ declare namespace API {
   };
 
   type listUserByPageUsingGETParams = {
+    company?: string;
     createTime?: string;
     current?: number;
     gender?: number;
@@ -206,9 +138,11 @@ declare namespace API {
     userAvatar?: string;
     userName?: string;
     userRole?: string;
+    workGroup?: string;
   };
 
   type listUserUsingGETParams = {
+    company?: string;
     createTime?: string;
     current?: number;
     gender?: number;
@@ -221,6 +155,25 @@ declare namespace API {
     userAvatar?: string;
     userName?: string;
     userRole?: string;
+    workGroup?: string;
+  };
+
+  type listWorkGroupByPageUsingGETParams = {
+    admin?: string;
+    current?: number;
+    name?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+  };
+
+  type listWorkGroupUsingGETParams = {
+    admin?: string;
+    current?: number;
+    name?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
   };
 
   type ModelAndView = {
@@ -306,19 +259,6 @@ declare namespace API {
     column?: string;
   };
 
-  type PageInterfaceInfo = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
-    records?: InterfaceInfo[];
-    searchCount?: boolean;
-    size?: number;
-    total?: number;
-  };
-
   type PagePost = {
     countId?: string;
     current?: number;
@@ -340,6 +280,19 @@ declare namespace API {
     orders?: OrderItem[];
     pages?: number;
     records?: UserVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageWorkGroup = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: WorkGroup[];
     searchCount?: boolean;
     size?: number;
     total?: number;
@@ -394,6 +347,7 @@ declare namespace API {
   };
 
   type User = {
+    company?: string;
     createTime?: string;
     gender?: number;
     id?: number;
@@ -404,15 +358,18 @@ declare namespace API {
     userName?: string;
     userPassword?: string;
     userRole?: string;
+    workGroup?: string;
   };
 
   type UserAddRequest = {
+    company?: string;
     gender?: number;
     userAccount?: string;
     userAvatar?: string;
     userName?: string;
     userPassword?: string;
     userRole?: string;
+    workGroup?: string;
   };
 
   type UserLoginRequest = {
@@ -427,6 +384,7 @@ declare namespace API {
   };
 
   type UserUpdateRequest = {
+    company?: string;
     gender?: number;
     id?: number;
     userAccount?: string;
@@ -434,9 +392,11 @@ declare namespace API {
     userName?: string;
     userPassword?: string;
     userRole?: string;
+    workGroup?: string;
   };
 
   type UserVO = {
+    company?: string;
     createTime?: string;
     gender?: number;
     id?: number;
@@ -445,9 +405,30 @@ declare namespace API {
     userAvatar?: string;
     userName?: string;
     userRole?: string;
+    workGroup?: string;
   };
 
   type View = {
     contentType?: string;
+  };
+
+  type WorkGroup = {
+    admin?: string;
+    created_time?: string;
+    id?: number;
+    isDelete?: number;
+    name?: string;
+    updated_time?: string;
+  };
+
+  type WorkGroupAddRequest = {
+    admin?: string;
+    name?: string;
+  };
+
+  type WorkGroupUpdateRequest = {
+    admin?: string;
+    id?: number;
+    name?: string;
   };
 }

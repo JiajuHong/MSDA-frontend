@@ -3,12 +3,12 @@
 // API 更新时间：
 // API 唯一标识：
 import * as basicErrorController from './basicErrorController';
-import * as interfaceController from './interfaceController';
+import * as groupController from './groupController';
 import * as postController from './postController';
 import * as userController from './userController';
 export default {
   basicErrorController,
-  interfaceController,
+  groupController,
   postController,
   userController,
 };

@@ -44,11 +44,24 @@ export default [
     ],
   },
   {
-    name: 'list.table-list',
+    name: '人员管理',
     icon: 'table',
-    path: '/list',
-    access: 'canAdmin',
-    component: './TableList',
+    path: '/personnel',
+    access: 'canRoot',
+    routes: [
+      {
+        path: '/personnel/user',
+        name: '用户管理',
+        icon: 'smile',
+        component: './Personnel/User',
+      },
+      {
+        path: '/personnel/group',
+        name: '工作组管理',
+        icon: 'smile',
+        component: './Personnel/Group',
+      }
+    ]
   },
   {
     path: '/',

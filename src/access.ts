@@ -6,6 +6,7 @@ export default function access(initialState: { currentUser?: API.UserVO } | unde
   return {
     canUser:currentUser,
     canAdmin: currentUser?.userRole === 'admin',
+    canRoot: currentUser?.userRole === 'root',
   };
 }
 
