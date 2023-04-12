@@ -249,7 +249,14 @@ const TableList: React.FC = () => {
         </Radio.Group>
       ),
     },
-
+    {
+      title: '所属公司',
+      dataIndex: 'company',
+    },
+    {
+      title: '所属工作组',
+      dataIndex: 'workGroup',
+    },
     {
       title: '角色',
       dataIndex: 'userRole',
@@ -342,7 +349,14 @@ const TableList: React.FC = () => {
         </Radio.Group>
       ),
     },
-
+    {
+      title: '所属公司',
+      dataIndex: 'company',
+    },
+    {
+      title: '所属工作组',
+      dataIndex: 'workGroup',
+    },
     {
       title: '角色',
       dataIndex: 'userRole',

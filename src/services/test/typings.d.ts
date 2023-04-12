@@ -11,6 +11,18 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseListSensorInfo = {
+    code?: number;
+    data?: SensorInfo[];
+    message?: string;
+  };
+
+  type BaseResponseListStructureInfo = {
+    code?: number;
+    data?: StructureInfo[];
+    message?: string;
+  };
+
   type BaseResponseListUserVO = {
     code?: number;
     data?: UserVO[];
@@ -35,6 +47,18 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponsePageSensorInfo = {
+    code?: number;
+    data?: PageSensorInfo;
+    message?: string;
+  };
+
+  type BaseResponsePageStructureInfo = {
+    code?: number;
+    data?: PageStructureInfo;
+    message?: string;
+  };
+
   type BaseResponsePageUserVO = {
     code?: number;
     data?: PageUserVO;
@@ -50,6 +74,18 @@ declare namespace API {
   type BaseResponsePost = {
     code?: number;
     data?: Post;
+    message?: string;
+  };
+
+  type BaseResponseSensorInfo = {
+    code?: number;
+    data?: SensorInfo;
+    message?: string;
+  };
+
+  type BaseResponseStructureInfo = {
+    code?: number;
+    data?: StructureInfo;
     message?: string;
   };
 
@@ -76,6 +112,16 @@ declare namespace API {
   };
 
   type getPostByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
+  type getSensorByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
+  type getStructureByIdUsingGETParams = {
     /** id */
     id?: number;
   };
@@ -122,6 +168,66 @@ declare namespace API {
     sortField?: string;
     sortOrder?: string;
     userId?: number;
+  };
+
+  type listSensorByPageUsingGETParams = {
+    created_by?: string;
+    created_time?: string;
+    current?: number;
+    group_id?: number;
+    id?: number;
+    location?: string;
+    name?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    status?: string;
+    structure_id?: number;
+    type?: string;
+    updated_time?: string;
+  };
+
+  type listSensorUsingGETParams = {
+    created_by?: string;
+    created_time?: string;
+    current?: number;
+    group_id?: number;
+    id?: number;
+    location?: string;
+    name?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    status?: string;
+    structure_id?: number;
+    type?: string;
+    updated_time?: string;
+  };
+
+  type listStructureByPageUsingGETParams = {
+    created_by?: string;
+    created_time?: string;
+    current?: number;
+    id?: number;
+    location?: string;
+    name?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    updated_time?: string;
+  };
+
+  type listStructureUsingGETParams = {
+    created_by?: string;
+    created_time?: string;
+    current?: number;
+    id?: number;
+    location?: string;
+    name?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    updated_time?: string;
   };
 
   type listUserByPageUsingGETParams = {
@@ -272,6 +378,32 @@ declare namespace API {
     total?: number;
   };
 
+  type PageSensorInfo = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: SensorInfo[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageStructureInfo = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: StructureInfo[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
   type PageUserVO = {
     countId?: string;
     current?: number;
@@ -344,6 +476,64 @@ declare namespace API {
     place?: string;
     reviewMessage?: string;
     reviewStatus?: number;
+  };
+
+  type SensorAddRequest = {
+    created_by?: string;
+    group_id?: number;
+    location?: string;
+    name?: string;
+    status?: string;
+    structure_id?: number;
+    type?: string;
+  };
+
+  type SensorInfo = {
+    created_by?: string;
+    created_time?: string;
+    group_id?: number;
+    id?: number;
+    isDelete?: number;
+    location?: string;
+    name?: string;
+    status?: string;
+    structure_id?: number;
+    type?: string;
+    updated_time?: string;
+  };
+
+  type SensorUpdateRequest = {
+    created_by?: string;
+    group_id?: number;
+    id?: number;
+    location?: string;
+    name?: string;
+    status?: string;
+    structure_id?: number;
+    type?: string;
+  };
+
+  type StructureAddRequest = {
+    created_by?: string;
+    location?: string;
+    name?: string;
+  };
+
+  type StructureInfo = {
+    created_by?: string;
+    created_time?: string;
+    id?: number;
+    isDelete?: number;
+    location?: string;
+    name?: string;
+    updated_time?: string;
+  };
+
+  type StructureUpdateRequest = {
+    created_by?: string;
+    id?: number;
+    location?: string;
+    name?: string;
   };
 
   type User = {

@@ -11,7 +11,7 @@ const Settings: LayoutSettings & {
   contentWidth: 'Fluid',
   fixedHeader: false,
   fixSiderbar: true,
-  title: 'SDA平台',
+  title: 'MSDA平台',
   pwa: false,
   logo: 'https://tuchuang-1310600455.cos.ap-nanjing.myqcloud.com/jiaju/202303201447121.webp',
   headerHeight: 48,

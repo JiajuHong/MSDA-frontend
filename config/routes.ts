@@ -42,8 +42,43 @@ export default [
     ],
   },
   {
-    name: '人员管理',
+    path: '/sensors',
+    name: '传感器管理',
     icon: 'table',
+    access: 'canRoot',
+    component: './Sensors',
+  },
+  {
+    path: '/admin/sensors',
+    name: '传感器管理',
+    icon: 'table',
+    access: 'canAdmin',
+    component: './Sensors',
+  },
+  {
+    path: '/structures',
+    name: '结构物管理',
+    icon: 'table',
+    access: 'canRoot',
+    component: './Structure',
+  },
+  {
+    path: '/chart',
+    name: '图表',
+    icon: 'table',
+    access: 'canRoot',
+    routes: [
+      {
+        path: '/chart/location-type',
+        name: '传感器汇总',
+        icon: 'smile',
+        component: './charts/location-type',
+      }
+    ]
+  },
+  {
+    name: '人员管理',
+    icon: 'user',
     path: '/personnel',
     access: 'canRoot',
     routes: [
