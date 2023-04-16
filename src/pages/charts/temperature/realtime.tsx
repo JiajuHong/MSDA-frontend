@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from '@ant-design/plots';
 
-const Temp_history: React.FC = () => {
+const Temp_realtime: React.FC = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const Temp_history: React.FC = () => {
   }, []);
 
   const asyncFetch = () => {
-    fetch('http://localhost:7529/api/temperature/history')
+    fetch('http://localhost:7529//api/charts/realtime/temperature')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -21,14 +21,18 @@ const Temp_history: React.FC = () => {
     padding: 'auto',
     xField: 'date',
     yField: 'temperature',
+    seriesField: 'name',
+    xAxis: {
+      type: 'time',
+    },
     smooth: true,
     slider: {
       start: 0.1,
-      end: 0.5,
+      end: 0.9,
     },
   };
-
+  // @ts-ignore
   return <Line {...config} />;
 };
 
-export default Temp_history
+export default Temp_realtime

@@ -4,10 +4,10 @@ import { Modal } from 'antd';
 import React, { useEffect, useRef } from 'react';
 
 export type Props = {
-  values: API.SensorInfo;
-  columns: ProColumns<API.SensorInfo>[];
+  values: API.SensorUpdateRequest;
+  columns: ProColumns<API.SensorUpdateRequest>[];
   onCancel: () => void;
-  onSubmit: (values: API.SensorInfo) => Promise<void>;
+  onSubmit: (values: API.SensorUpdateRequest) => Promise<void>;
   visible: boolean;
 };
 

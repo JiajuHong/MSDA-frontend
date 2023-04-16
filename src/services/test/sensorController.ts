@@ -62,6 +62,14 @@ export async function listSensorUsingGET(
   });
 }
 
+/** listSensorByLocationType GET /api/sensor/list/locationType */
+export async function listSensorByLocationTypeUsingGET(options?: { [key: string]: any }) {
+  return request<API.BaseResponseMapstringobject>('/api/sensor/list/locationType', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
 /** listSensorByPage GET /api/sensor/list/page */
 export async function listSensorByPageUsingGET(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
@@ -88,6 +96,14 @@ export async function updateSensorUsingPOST(
       'Content-Type': 'application/json',
     },
     data: body,
+    ...(options || {}),
+  });
+}
+
+/** welcome GET /api/sensor/welcome */
+export async function welcomeUsingGET(options?: { [key: string]: any }) {
+  return request<API.BaseResponseHashMapstringlong>('/api/sensor/welcome', {
+    method: 'GET',
     ...(options || {}),
   });
 }

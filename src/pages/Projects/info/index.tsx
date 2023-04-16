@@ -102,6 +102,15 @@ const TableList: React.FC = () => {
       copyable: true,
     },
     {
+      title: '状态',
+      dataIndex: 'status',
+      valueType: 'select',
+      valueEnum: {
+        ongoing: { text: '进行中', status: 'Processing' },
+        finished: { text: '已完结', status: 'Success' },
+      },
+    },
+    {
       title: '项目封面',
       dataIndex: 'cover',
       search: false,
@@ -117,6 +126,12 @@ const TableList: React.FC = () => {
       dataIndex: 'description',
       search: false,
       copyable: true,
+    },
+    {
+      title: '创建时间',
+      dataIndex: 'created_time',
+      valueType: 'dateTime',
+      search: false,
     },
     {
       title: '更新时间',
@@ -165,6 +180,15 @@ const TableList: React.FC = () => {
       copyable: true,
     },
     {
+      title: '状态',
+      dataIndex: 'status',
+      valueType: 'select',
+      valueEnum: {
+        ongoing: { text: '进行中', status: 'Processing' },
+        finished: { text: '已完结', status: 'Success' },
+      },
+    },
+    {
       title: '项目封面',
       dataIndex: 'cover',
       search: false,
@@ -194,6 +218,15 @@ const TableList: React.FC = () => {
       title: '负责人',
       dataIndex: 'principal',
       copyable: true,
+    },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      valueType: 'select',
+      valueEnum: {
+        ongoing: { text: '进行中', status: 'Processing' },
+        finished: { text: '已完结', status: 'Success' },
+      },
     },
     {
       title: '项目封面',
@@ -266,7 +299,7 @@ const TableList: React.FC = () => {
           onChange: (page) => console.log(page),
         }}
         dateFormatter="string"
-        headerTitle="高级表格"
+        headerTitle="项目管理"
         toolBarRender={() => [
           <Button
             key="button"

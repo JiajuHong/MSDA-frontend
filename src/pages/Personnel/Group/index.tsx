@@ -107,6 +107,12 @@ const TableList: React.FC = () => {
       search: false,
     },
     {
+      title: '创建时间',
+      dataIndex: 'created_time',
+      valueType: 'dateTime',
+      search: false,
+    },
+    {
       title: '更新时间',
       dataIndex: 'updated_time',
       valueType: 'dateTime',
@@ -252,7 +258,7 @@ const TableList: React.FC = () => {
           onChange: (page) => console.log(page),
         }}
         dateFormatter="string"
-        headerTitle="高级表格"
+        headerTitle="组管理"
         toolBarRender={() => [
           <Button
             key="button"

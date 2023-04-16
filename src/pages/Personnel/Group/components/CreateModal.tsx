@@ -4,9 +4,9 @@ import { Modal } from 'antd';
 import React from 'react';
 
 export type Props = {
-  columns: ProColumns<API.UserAddRequest>[];
+  columns: ProColumns<API.WorkGroupAddRequest>[];
   onCancel: () => void;
-  onSubmit: (values: API.UserAddRequest) => Promise<void>;
+  onSubmit: (values: API.WorkGroupAddRequest) => Promise<void>;
   visible: boolean;
 };
 

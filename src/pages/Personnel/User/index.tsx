@@ -433,7 +433,7 @@ const TableList: React.FC = () => {
           onChange: (page) => console.log(page),
         }}
         dateFormatter="string"
-        headerTitle="高级表格"
+        headerTitle="人员管理"
         toolBarRender={() => [
           <Button
             key="button"

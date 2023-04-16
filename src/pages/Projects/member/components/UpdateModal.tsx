@@ -4,10 +4,10 @@ import { Modal } from 'antd';
 import React, { useEffect, useRef } from 'react';
 
 export type Props = {
-  values: API.ProjectInfo;
-  columns: ProColumns<API.ProjectInfo>[];
+  values: API.ProjectMemberUpdateRequest;
+  columns: ProColumns<API.ProjectMemberUpdateRequest>[];
   onCancel: () => void;
-  onSubmit: (values: API.ProjectInfo) => Promise<void>;
+  onSubmit: (values: API.ProjectMemberUpdateRequest) => Promise<void>;
   visible: boolean;
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Area } from '@ant-design/plots';
 
-const Infrared_history: React.FC = () => {
+const Infrared_realtime: React.FC = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const Infrared_history: React.FC = () => {
   }, []);
 
   const asyncFetch = () => {
-    fetch('http://localhost:7529/api/charts/history/infrared')
+    fetch('http://localhost:7529/api/charts/realtime/infrared')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -29,4 +29,4 @@ const Infrared_history: React.FC = () => {
 
   return <Area {...config} />;
 };
-export default Infrared_history
+export default Infrared_realtime

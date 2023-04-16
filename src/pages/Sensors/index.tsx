@@ -17,7 +17,7 @@ const TableList: React.FC = () => {
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [showDetail] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
-  const [currentRow, setCurrentRow] = useState<API.SensorInfo>();
+  const [currentRow, setCurrentRow] = useState<API.SensorVO>();
 
   const handleAdd = async (fields: API.SensorAddRequest) => {
     const hide = message.loading('正在添加');
@@ -37,7 +37,7 @@ const TableList: React.FC = () => {
     }
   };
 
-  const handleRemove = async (record: API.SensorInfo) => {
+  const handleRemove = async (record: API.SensorVO) => {
     Modal.confirm({
       title: '确认删除？',
       content: '删除后不可恢复',
@@ -84,7 +84,7 @@ const TableList: React.FC = () => {
     }
   };
 
-  const columns: ProColumns<API.SensorInfo>[] = [
+  const columns: ProColumns<API.SensorVO>[] = [
     {
       title: 'id',
       dataIndex: 'id',
@@ -124,7 +124,7 @@ const TableList: React.FC = () => {
     },
     {
       title: '所属结构物',
-      dataIndex: 'structure_id',
+      dataIndex: 'structure_name',
     },
     {
       title: '创建人',
@@ -132,7 +132,7 @@ const TableList: React.FC = () => {
     },
     {
       title: '所属组',
-      dataIndex: 'group_id',
+      dataIndex: 'group_name',
     },
     {
       title: '创建时间',
@@ -209,7 +209,11 @@ const TableList: React.FC = () => {
     },
     {
       title: '所属结构物',
-      dataIndex: 'structure_id',
+      dataIndex: 'structure_name',
+    },
+    {
+      title: '所属工作组',
+      dataIndex: 'group_name',
     },
   ];
 
@@ -239,12 +243,16 @@ const TableList: React.FC = () => {
     },
     {
       title: '所属结构物',
-      dataIndex: 'structure_id',
+      dataIndex: 'structure_name',
+    },
+    {
+      title: '所属工作组',
+      dataIndex: 'group_name',
     },
   ];
   return (
     <PageContainer>
-      <ProTable<API.SensorInfo>
+      <ProTable<API.SensorVO>
         columns={columns}
         actionRef={actionRef}
         cardBordered
@@ -301,7 +309,7 @@ const TableList: React.FC = () => {
           onChange: (page) => console.log(page),
         }}
         dateFormatter="string"
-        headerTitle="高级表格"
+        headerTitle="传感器管理"
         toolBarRender={() => [
           <Button
             key="button"

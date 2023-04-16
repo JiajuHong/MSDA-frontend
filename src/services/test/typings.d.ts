@@ -5,9 +5,27 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseHashMapstringlong = {
+    code?: number;
+    data?: Record<string, any>;
+    message?: string;
+  };
+
   type BaseResponseListPost = {
     code?: number;
     data?: Post[];
+    message?: string;
+  };
+
+  type BaseResponseListProjectInfo = {
+    code?: number;
+    data?: ProjectInfo[];
+    message?: string;
+  };
+
+  type BaseResponseListProjectMember = {
+    code?: number;
+    data?: ProjectMember[];
     message?: string;
   };
 
@@ -41,9 +59,27 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseMapstringobject = {
+    code?: number;
+    data?: Record<string, any>;
+    message?: string;
+  };
+
   type BaseResponsePagePost = {
     code?: number;
     data?: PagePost;
+    message?: string;
+  };
+
+  type BaseResponsePageProjectInfo = {
+    code?: number;
+    data?: PageProjectInfo;
+    message?: string;
+  };
+
+  type BaseResponsePageProjectMember = {
+    code?: number;
+    data?: PageProjectMember;
     message?: string;
   };
 
@@ -74,6 +110,18 @@ declare namespace API {
   type BaseResponsePost = {
     code?: number;
     data?: Post;
+    message?: string;
+  };
+
+  type BaseResponseProjectInfo = {
+    code?: number;
+    data?: ProjectInfo;
+    message?: string;
+  };
+
+  type BaseResponseProjectMember = {
+    code?: number;
+    data?: ProjectMember;
     message?: string;
   };
 
@@ -112,6 +160,16 @@ declare namespace API {
   };
 
   type getPostByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
+  type getProjectByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
+  type getProjectMemberByIdUsingGETParams = {
     /** id */
     id?: number;
   };
@@ -168,6 +226,48 @@ declare namespace API {
     sortField?: string;
     sortOrder?: string;
     userId?: number;
+  };
+
+  type listProjectByPageUsingGETParams = {
+    cover?: string;
+    current?: number;
+    description?: string;
+    name?: string;
+    pageSize?: number;
+    principal?: string;
+    sortField?: string;
+    sortOrder?: string;
+  };
+
+  type listProjectMemberByPageUsingGETParams = {
+    avatar?: string;
+    current?: number;
+    pageSize?: number;
+    project_id?: number;
+    sortField?: string;
+    sortOrder?: string;
+    user_name?: string;
+  };
+
+  type listProjectMemberUsingGETParams = {
+    avatar?: string;
+    current?: number;
+    pageSize?: number;
+    project_id?: number;
+    sortField?: string;
+    sortOrder?: string;
+    user_name?: string;
+  };
+
+  type listProjectUsingGETParams = {
+    cover?: string;
+    current?: number;
+    description?: string;
+    name?: string;
+    pageSize?: number;
+    principal?: string;
+    sortField?: string;
+    sortOrder?: string;
   };
 
   type listSensorByPageUsingGETParams = {
@@ -378,6 +478,32 @@ declare namespace API {
     total?: number;
   };
 
+  type PageProjectInfo = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: ProjectInfo[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageProjectMember = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: ProjectMember[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
   type PageSensorInfo = {
     countId?: string;
     current?: number;
@@ -478,19 +604,84 @@ declare namespace API {
     reviewStatus?: number;
   };
 
+  type ProjectAddRequest = {
+    cover?: string;
+    description?: string;
+    name?: string;
+
+    status?: string;
+    principal?: string;
+  };
+
+  type ProjectInfo = {
+    cover?: string;
+    created_time?: string;
+    description?: string;
+    id?: number;
+    isDelete?: number;
+    name?: string;
+    principal?: string;
+    updated_time?: string;
+  };
+
+  type ProjectMember = {
+    avatar?: string;
+    created_time?: string;
+    id?: number;
+    isDelete?: number;
+    project_id?: number;
+    updated_time?: string;
+    user_name?: string;
+  };
+
+  type ProjectMemberVO = {
+    avatar?: string;
+    created_time?: string;
+    id?: number;
+    isDelete?: number;
+    project_name?: string;
+    updated_time?: string;
+    user_name?: string;
+  };
+
+  type ProjectMemberAddRequest = {
+    avatar?: string;
+    project_name?: string;
+    user_name?: string;
+  };
+
+  type ProjectMemberUpdateRequest = {
+    avatar?: string;
+    id?: number;
+    project_name?: string;
+    user_name?: string;
+  };
+
+  type ProjectUpdateRequest = {
+    cover?: string;
+    description?: string;
+    id?: number;
+    name?: string;
+
+    status?: string;
+    principal?: string;
+  };
+
   type SensorAddRequest = {
     created_by?: string;
-    group_id?: number;
+    group_name?: string;
     location?: string;
     name?: string;
     status?: string;
-    structure_id?: number;
+    structure_name?: string;
     type?: string;
   };
 
   type SensorInfo = {
+    count?: number;
     created_by?: string;
     created_time?: string;
+    error?: number;
     group_id?: number;
     id?: number;
     isDelete?: number;
@@ -502,14 +693,30 @@ declare namespace API {
     updated_time?: string;
   };
 
+  type SensorVO = {
+    count?: number;
+    created_by?: string;
+    created_time?: string;
+    error?: number;
+    group_name?: string;
+    id?: number;
+    isDelete?: number;
+    location?: string;
+    name?: string;
+    status?: string;
+    structure_name?: string;
+    type?: string;
+    updated_time?: string;
+  };
+
   type SensorUpdateRequest = {
     created_by?: string;
-    group_id?: number;
+    group_name?: string;
     id?: number;
     location?: string;
     name?: string;
     status?: string;
-    structure_id?: number;
+    structure_name?: string;
     type?: string;
   };
 

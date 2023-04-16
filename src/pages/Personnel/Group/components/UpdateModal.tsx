@@ -4,10 +4,10 @@ import { Modal } from 'antd';
 import React, { useEffect, useRef } from 'react';
 
 export type Props = {
-  values: API.UserVO;
-  columns: ProColumns<API.UserVO>[];
+  values: API.WorkGroup;
+  columns: ProColumns<API.WorkGroup>[];
   onCancel: () => void;
-  onSubmit: (values: API.UserVO) => Promise<void>;
+  onSubmit: (values: API.WorkGroup) => Promise<void>;
   visible: boolean;
 };
 

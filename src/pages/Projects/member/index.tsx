@@ -1,28 +1,28 @@
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { Button, Image, message, Modal } from 'antd';
-import { useRef, useState } from 'react';
+import { Avatar, Button, message, Modal } from 'antd';
+import React, { useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import CreateModal from './components/CreateModal';
 import UpdateModal from './components/UpdateModal';
 import {
-  addProjectUsingPOST,
-  deleteProjectUsingPOST,
-  listProjectUsingGET,
-  updateProjectUsingPOST,
-} from '@/services/test/projectController';
+  addProjectMemberUsingPOST,
+  deleteProjectMemberUsingPOST,
+  listProjectMemberUsingGET,
+  updateProjectMemberUsingPOST,
+} from '@/services/test/projectMemberController';
 
 const TableList: React.FC = () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [showDetail] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
-  const [currentRow, setCurrentRow] = useState<API.ProjectInfo>();
+  const [currentRow, setCurrentRow] = useState<API.ProjectMemberVO>();
 
-  const handleAdd = async (fields: API.ProjectAddRequest) => {
+  const handleAdd = async (fields: API.ProjectMemberAddRequest) => {
     const hide = message.loading('正在添加');
     try {
-      await addProjectUsingPOST({
+      await addProjectMemberUsingPOST({
         ...fields,
       });
       hide();
@@ -37,7 +37,7 @@ const TableList: React.FC = () => {
     }
   };
 
-  const handleRemove = async (record: API.ProjectInfo) => {
+  const handleRemove = async (record: API.ProjectMemberVO) => {
     Modal.confirm({
       title: '确认删除？',
       content: '删除后不可恢复',
@@ -48,7 +48,7 @@ const TableList: React.FC = () => {
         if (!record) return true;
 
         try {
-          await deleteProjectUsingPOST({
+          await deleteProjectMemberUsingPOST({
             id: record.id,
           });
           hide();
@@ -64,13 +64,13 @@ const TableList: React.FC = () => {
     });
   };
 
-  const handleUpdate = async (fields: API.ProjectUpdateRequest) => {
+  const handleUpdate = async (fields: API.ProjectMemberUpdateRequest) => {
     if (!currentRow) {
       return;
     }
     const hide = message.loading('修改中');
     try {
-      await updateProjectUsingPOST({
+      await updateProjectMemberUsingPOST({
         id: currentRow.id,
         ...fields,
       });
@@ -84,39 +84,39 @@ const TableList: React.FC = () => {
     }
   };
 
-  const columns: ProColumns<API.ProjectInfo>[] = [
+  const columns: ProColumns<API.ProjectMemberVO>[] = [
     {
       title: 'id',
       dataIndex: 'id',
       search: false,
     },
     {
-      title: '项目名称',
-      dataIndex: 'name',
+      title: '成员名称',
+      dataIndex: 'user_name',
       copyable: true,
-      search: false,
+      search: true,
     },
     {
-      title: '负责人',
-      dataIndex: 'principal',
+      title: '参与项目',
+      dataIndex: 'project_name',
       copyable: true,
     },
     {
-      title: '项目封面',
-      dataIndex: 'cover',
+      title: '头像',
+      dataIndex: 'avatar',
       search: false,
       render: (_, record) => (
         <div>
           {/*<Image src={record.userAvatar} width={50} height={50}/>*/}
-          <Image width={200} src={record.cover} />
+          <Avatar size="large" src={record.avatar} />
         </div>
       ),
     },
     {
-      title: '描述',
-      dataIndex: 'description',
+      title: '创建时间',
+      dataIndex: 'created_time',
+      valueType: 'dateTime',
       search: false,
-      copyable: true,
     },
     {
       title: '更新时间',
@@ -152,70 +152,60 @@ const TableList: React.FC = () => {
     },
   ];
 
-  const addProjectColumns: ProColumns<API.ProjectAddRequest>[] = [
+  const addProjectMemberColumns: ProColumns<API.ProjectMemberAddRequest>[] = [
     {
-      title: '项目名称',
-      dataIndex: 'name',
+      title: '成员名称',
+      dataIndex: 'user_name',
       copyable: true,
       search: false,
     },
     {
-      title: '负责人',
-      dataIndex: 'principal',
-      copyable: true,
+      title: '参与项目',
+      dataIndex: 'project_name',
     },
     {
-      title: '项目封面',
-      dataIndex: 'cover',
+      title: '头像',
+      dataIndex: 'avatar',
       search: false,
       render: (_, record) => (
         <div>
           {/*<Image src={record.userAvatar} width={50} height={50}/>*/}
-          <Image width={200} src={record.cover} />
+          <Avatar src={record.avatar} />
         </div>
       ),
     },
-    {
-      title: '描述',
-      dataIndex: 'description',
-      search: false,
-      copyable: true,
-    },
   ];
 
-  const updateProjectColumns: ProColumns<API.ProjectUpdateRequest>[] = [
+  const updateProjectMemberColumns: ProColumns<API.ProjectMemberUpdateRequest>[] = [
     {
-      title: '项目名称',
-      dataIndex: 'name',
-      copyable: true,
-      search: false,
+      title: '成员名称',
+      dataIndex: 'user_name',
     },
     {
-      title: '负责人',
-      dataIndex: 'principal',
-      copyable: true,
+      title: '参与项目',
+      dataIndex: 'project_name',
     },
     {
-      title: '项目封面',
-      dataIndex: 'cover',
+      title: '头像',
+      dataIndex: 'avatar',
       search: false,
       render: (_, record) => (
         <div>
           {/*<Image src={record.userAvatar} width={50} height={50}/>*/}
-          <Image width={200} src={record.cover} />
+          <Avatar src={record.avatar} />
         </div>
       ),
     },
   ];
   return (
     <PageContainer>
-      <ProTable<API.ProjectInfo>
+      <ProTable<API.ProjectMemberVO>
         columns={columns}
         actionRef={actionRef}
         cardBordered
         request={async (params, sort, filter) => {
           console.log(sort, filter);
-          const res = await listProjectUsingGET({ ...params });
+          const res = await listProjectMemberUsingGET({ ...params });
           if (res) {
             return {
               data: res || [],
@@ -266,7 +256,7 @@ const TableList: React.FC = () => {
           onChange: (page) => console.log(page),
         }}
         dateFormatter="string"
-        headerTitle="高级表格"
+        headerTitle="项目成员管理"
         toolBarRender={() => [
           <Button
             key="button"
@@ -281,7 +271,7 @@ const TableList: React.FC = () => {
         ]}
       />
       <UpdateModal
-        columns={updateProjectColumns}
+        columns={updateProjectMemberColumns}
         onSubmit={async (value) => {
           const success = await handleUpdate(value);
           if (success) {
@@ -303,7 +293,7 @@ const TableList: React.FC = () => {
       />
 
       <CreateModal
-        columns={addProjectColumns}
+        columns={addProjectMemberColumns}
         onCancel={() => {
           handleModalVisible(false);
         }}
