@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Area } from '@ant-design/plots';
 
-const Infrared_realtime: React.FC = () => {
+const Humi_realtime: React.FC = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const Infrared_realtime: React.FC = () => {
   }, []);
 
   const asyncFetch = () => {
-    fetch('http://localhost:7529/api/charts/realtime/infrared')
+    fetch('http://localhost:7529/api/charts/realtime/humidity')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -17,16 +17,12 @@ const Infrared_realtime: React.FC = () => {
       });
   };
   const config = {
-    data: data,
+    data,
     xField: 'date',
-    yField: 'distance',
+    yField: 'humidity',
     seriesField: 'name',
-    slider: {
-      start: 0.1,
-      end: 0.9,
-    },
   };
 
   return <Area {...config} />;
 };
-export default Infrared_realtime
+export default Humi_realtime
