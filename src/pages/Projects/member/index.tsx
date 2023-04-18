@@ -94,12 +94,12 @@ const TableList: React.FC = () => {
       title: '成员名称',
       dataIndex: 'user_name',
       copyable: true,
-      search: true,
     },
     {
       title: '参与项目',
       dataIndex: 'project_name',
       copyable: true,
+      search: false
     },
     {
       title: '头像',

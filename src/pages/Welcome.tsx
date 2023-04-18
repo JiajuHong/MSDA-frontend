@@ -2,8 +2,7 @@ import {PageContainer, ProCard, StatisticCard} from '@ant-design/pro-components'
 import RcResizeObserver from 'rc-resize-observer';
 import React, {useEffect, useState} from 'react';
 import Page from "@/pages/charts/dashboard";
-import Percent from "@/pages/charts/dashboard/percent";
-import Leader from "@/pages/charts/dashboard/leaderChord";
+import LocationTypeBar from "@/pages/charts/dashboard/LocationTypeBar";
 
 const { Statistic } = StatisticCard;
 
@@ -85,9 +84,9 @@ const Welcome : React.FC = () => {
           </ProCard>
           <ProCard split="horizontal">
             <StatisticCard
-              title="工程总进度"
+              title="各个地点的传感器"
               chart={
-                <Percent />
+                <LocationTypeBar />
               }
             />
           </ProCard>

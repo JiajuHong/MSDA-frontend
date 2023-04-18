@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
+import {Column} from '@ant-design/plots';
 
-// @ts-ignore
-import { Radar } from '@ant-design/plots';
-
-const LocationTypeRadar: React.FC = () => {
+const LocationTypeBar: React.FC = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -11,7 +9,7 @@ const LocationTypeRadar: React.FC = () => {
   }, []);
 
   const asyncFetch = () => {
-    fetch('http://localhost:7529/api/sensor/list/LocationTypeRadar')
+    fetch('http://localhost:7529/api/sensor/list/LocationTypeBar')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -23,47 +21,13 @@ const LocationTypeRadar: React.FC = () => {
     xField: 'location',
     yField: 'count',
     seriesField: 'type',
-    meta: {
-      count: {
-        alias: '数量',
-        min: 0,
-        max: 8,
-      },
-    },
-    xAxis: {
-      line: null,
-      tickLine: null,
-      grid: {
-        line: {
-          style: {
-            lineDash: null,
-          },
-        },
-      },
-    },
-    yAxis: {
-      line: null,
-      tickLine: null,
-      grid: {
-        line: {
-          type: 'line',
-          style: {
-            lineDash: null,
-          },
-        },
-        alternateColor: 'rgba(0, 0, 0, 0.04)',
-      },
-    },
-    // 开启面积
-    area: {},
-    // 开启辅助点
-    point: {
-      size: 2,
+    isGroup: true,
+    columnStyle: {
+      radius: [20, 20, 0, 0],
     },
   };
 
-  // @ts-ignore
-  return <Radar {...config} />;
+  return <Column {...config} />;
 };
 
-export default LocationTypeRadar;
+export default LocationTypeBar

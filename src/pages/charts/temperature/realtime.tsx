@@ -25,6 +25,11 @@ const Temp_realtime: React.FC = () => {
     xAxis: {
       type: 'time',
     },
+    yAxis: {
+      label: {
+        formatter: (v) => `${v} °C`,
+      },
+    },
     smooth: true,
     slider: {
       start: 0.1,

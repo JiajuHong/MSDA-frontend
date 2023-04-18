@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Line} from '@ant-design/plots';
 
-const Pressure_history: React.FC = () => {
+const Pressure_realtime: React.FC = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const Pressure_history: React.FC = () => {
   }, []);
 
   const asyncFetch = () => {
-    fetch('http://localhost:7529/api/charts/history/pressure')
+    fetch('http://localhost:7529/api/charts/realtime/pressure')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -26,6 +26,10 @@ const Pressure_history: React.FC = () => {
         formatter: (v) => `${v} N`,
       },
     },
+    slider: {
+      start: 0.1,
+      end: 0.9,
+    },
     legend: {
       position: 'top',
     },
@@ -41,4 +45,4 @@ const Pressure_history: React.FC = () => {
   // @ts-ignore
   return <Line {...config} />;
 };
-export default Pressure_history
+export default Pressure_realtime

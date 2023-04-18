@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Rose } from '@ant-design/charts';
+import React, {useEffect, useState} from 'react';
+import {Pie} from '@ant-design/charts';
 
 const Page: React.FC = () => {
   const [data, setData] = useState({});
@@ -20,22 +20,43 @@ const Page: React.FC = () => {
     return null;
   }
   const config = {
-    data: data.data.rose,
-    isStack: true,
-    xField: 'type',
-    yField: 'count',
-    seriesField: 'location',
-    radius: 0.9,
+    appendPadding: 10,
+    data: data.data.pie,
+    angleField: 'count',
+    colorField: 'type',
+    radius: 1,
+    innerRadius: 0.6,
     label: {
-      offset: -15,
+      type: 'inner',
+      offset: '-50%',
+      content: '{value}',
+      style: {
+        textAlign: 'center',
+        fontSize: 14,
+      },
     },
     interactions: [
+      {
+        type: 'element-selected',
+      },
       {
         type: 'element-active',
       },
     ],
+    statistic: {
+      title: false,
+      content: {
+        style: {
+          whiteSpace: 'pre-wrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        },
+        content: '传感器汇总',
+      },
+    },
   };
-  return <Rose {...config} />;
+  // @ts-ignore
+  return <Pie {...config} />;
 };
 
 export default Page;

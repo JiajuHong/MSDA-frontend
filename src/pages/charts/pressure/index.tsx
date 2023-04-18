@@ -1,6 +1,6 @@
 import {PageContainer, ProCard} from '@ant-design/pro-components';
-import Humi_history from '@/pages/charts/humidity/history';
-import Humi_realtime from "@/pages/charts/humidity/realtime";
+import Pressure_history from "@/pages/charts/pressure/Pressure_history";
+import Pressure_realtime from "@/pages/charts/pressure/Pressure_realtime";
 
 export default () => (
   <div
@@ -20,11 +20,11 @@ export default () => (
             tabPosition: 'top',
           }}
         >
-          <ProCard.TabPane key="tab1" tab="实时数据(%RH)">
-            <Humi_realtime />
+          <ProCard.TabPane key="tab1" tab="实时数据">
+            <Pressure_realtime />
           </ProCard.TabPane>
-          <ProCard.TabPane key="tab2" tab="历史数据(%RH)">
-            <Humi_history />
+          <ProCard.TabPane key="tab2" tab="历史数据">
+            <Pressure_history />
           </ProCard.TabPane>
         </ProCard>
       </div>

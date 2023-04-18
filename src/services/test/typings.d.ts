@@ -253,7 +253,7 @@ declare namespace API {
     avatar?: string;
     current?: number;
     pageSize?: number;
-    project_id?: number;
+    project_name?: string;
     sortField?: string;
     sortOrder?: string;
     user_name?: string;

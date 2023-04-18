@@ -21,6 +21,15 @@ const Humi_realtime: React.FC = () => {
     xField: 'date',
     yField: 'humidity',
     seriesField: 'name',
+    yAxis: {
+      label: {
+        formatter: (v) => `${v} %RH`,
+      },
+    },
+    slider: {
+      start: 0.1,
+      end: 0.9,
+    },
   };
 
   return <Area {...config} />;

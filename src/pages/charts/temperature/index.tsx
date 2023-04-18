@@ -20,10 +20,10 @@ export default () => (
             tabPosition: 'top',
           }}
         >
-          <ProCard.TabPane key="tab1" tab="实时数据(℃)">
+          <ProCard.TabPane key="tab1" tab="实时数据">
             <Temp_realtime />
           </ProCard.TabPane>
-          <ProCard.TabPane key="tab2" tab="历史数据(℃)">
+          <ProCard.TabPane key="tab2" tab="历史数据">
             <Temp_history />
           </ProCard.TabPane>
         </ProCard>

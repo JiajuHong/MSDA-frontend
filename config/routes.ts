@@ -57,7 +57,7 @@ export default [
   },
   {
     path: '/chart',
-    name: '图表',
+    name: '数据分析',
     icon: 'bar-chart',
     access: 'canRoot',
     routes: [
@@ -67,9 +67,14 @@ export default [
         component: './charts/temperature',
       },
       {
-        path: '/chart/infrared',
-        name: '红外传感器',
-        component: './charts/infrared',
+        path: '/chart/humidity',
+        name: '湿度传感器',
+        component: './charts/humidity',
+      },
+      {
+        path: '/chart/pressure',
+        name: '压力传感器',
+        component: './charts/pressure',
       },
     ],
   },

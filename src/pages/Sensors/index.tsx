@@ -103,7 +103,7 @@ const TableList: React.FC = () => {
       valueEnum: {
         '温度传感器': { text: '温度传感器', status: 'Default' },
         '倾角传感器': { text: '倾角传感器', status: 'Processing' },
-        '红外传感器': { text: '红外传感器', status: 'Processing' },
+        '湿度传感器': { text: '湿度传感器', status: 'Processing' },
         '压力传感器': { text: '压力传感器', status: 'Processing' },
         '水位传感器': { text: '水位传感器', status: 'Processing' },
         // 可以添加更多的选项
@@ -188,7 +188,7 @@ const TableList: React.FC = () => {
       valueEnum: {
         '温度传感器': { text: '温度传感器', status: 'Default' },
         '倾角传感器': { text: '倾角传感器', status: 'Processing' },
-        '红外传感器': { text: '红外传感器', status: 'Processing' },
+        '湿度传感器': { text: '湿度传感器', status: 'Processing' },
         '压力传感器': { text: '压力传感器', status: 'Processing' },
         '水位传感器': { text: '水位传感器', status: 'Processing' },
         // 可以添加更多的选项
