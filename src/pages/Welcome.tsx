@@ -35,7 +35,8 @@ const Welcome : React.FC = () => {
       >
         <ProCard
           title="数据概览"
-          extra="2019年9月28日 星期五"
+          // 获取当前日期, yyyy-mm-dd
+          extra={new Date().toLocaleDateString()}
           split={responsive ? 'horizontal' : 'vertical'}
           headerBordered
           bordered

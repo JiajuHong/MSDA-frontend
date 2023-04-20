@@ -1,12 +1,12 @@
 import Footer from '@/components/Footer';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
-import { Alert, Divider, message, Space, Tabs } from 'antd';
-import React, { useState } from 'react';
-import { history, Link, useModel } from 'umi';
+import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {LoginForm, ProFormCheckbox, ProFormText} from '@ant-design/pro-components';
+import {Alert, Divider, message, Space, Tabs} from 'antd';
+import React, {useState} from 'react';
+import {history, Link, useModel} from 'umi';
 import styles from './index.less';
-import { PLANET_LINK } from '@/constant';
-import { userLoginUsingPOST } from '@/services/test/userController';
+import {PLANET_LINK} from '@/constant';
+import {userLoginUsingPOST} from '@/services/test/userController';
 
 const LoginMessage: React.FC<{
   content: string;
@@ -65,8 +65,8 @@ const Login: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <LoginForm
-          logo={<img alt="logo" src="/1432127.png" />}
-          title="SDA平台"
+          logo={<img alt="logo" src="/1432127.png"/>}
+          title="MSDA平台"
           subTitle={'无需要太多，只需要你一张温柔面容。——张国荣《无需要太多》'}
           initialValues={{
             autoLogin: true,

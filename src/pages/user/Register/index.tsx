@@ -1,11 +1,11 @@
 import Footer from '@/components/Footer';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { LoginForm, ProFormText } from '@ant-design/pro-components';
-import { history } from 'umi';
-import { message, Tabs } from 'antd';
-import React, { useState } from 'react';
+import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {LoginForm, ProFormText} from '@ant-design/pro-components';
+import {history} from 'umi';
+import {message, Tabs} from 'antd';
+import React, {useState} from 'react';
 import styles from './index.less';
-import { userRegisterUsingPOST } from '@/services/test/userController';
+import {userRegisterUsingPOST} from '@/services/test/userController';
 
 const Register: React.FC = () => {
   const [type, setType] = useState<string>('account');
@@ -46,8 +46,8 @@ const Register: React.FC = () => {
               submitText: '注册',
             },
           }}
-          logo={<img alt="logo" src="/1432127.png" />}
-          title="家驹的用户中心"
+          logo={<img alt="logo" src="/1432127.png"/>}
+          title="MSDA平台"
           subTitle={'无需要太多，只需要你一张温柔面容。——张国荣《无需要太多》'}
           initialValues={{
             autoLogin: true,

@@ -1,8 +1,8 @@
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { Avatar, Button, message, Modal } from 'antd';
-import React, { useRef, useState } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
+import type {ActionType, ProColumns} from '@ant-design/pro-components';
+import {PageContainer, ProTable} from '@ant-design/pro-components';
+import {Avatar, Button, message, Modal} from 'antd';
+import React, {useRef, useState} from 'react';
+import {PlusOutlined} from '@ant-design/icons';
 import CreateModal from './components/CreateModal';
 import UpdateModal from './components/UpdateModal';
 import {
@@ -99,7 +99,6 @@ const TableList: React.FC = () => {
       title: '参与项目',
       dataIndex: 'project_name',
       copyable: true,
-      search: false
     },
     {
       title: '头像',
