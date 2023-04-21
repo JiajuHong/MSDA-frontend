@@ -55,9 +55,8 @@ const Login: React.FC = () => {
       // 如果失败去设置用户错误信息
       // @ts-ignore
       setUserLoginState(res);
-    } catch (error) {
-      const defaultLoginFailureMessage = '登录失败，请重试！';
-      message.error(defaultLoginFailureMessage);
+    } catch (error:any) {
+      message.error("登陆失败," + error.message);
     }
   };
   const { status, type: loginType } = userLoginState;
@@ -72,7 +71,7 @@ const Login: React.FC = () => {
             autoLogin: true,
           }}
           onFinish={async (values) => {
-            await handleSubmit(values as API.LoginParams);
+            await handleSubmit(values as API.UserLoginRequest);
           }}
         >
           <Tabs activeKey={type} onChange={setType}>
