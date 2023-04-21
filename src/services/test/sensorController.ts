@@ -53,7 +53,7 @@ export async function listSensorUsingGET(
   params: API.listSensorUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseListSensorInfo>('/api/sensor/list', {
+  return request<API.BaseResponseListSensorVO>('/api/sensor/list', {
     method: 'GET',
     params: {
       ...params,
@@ -66,6 +66,29 @@ export async function listSensorUsingGET(
 export async function listSensorByLocationTypeUsingGET(options?: { [key: string]: any }) {
   return request<API.BaseResponseMapstringobject>('/api/sensor/list/locationType', {
     method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** listLocationTypeBar GET /api/sensor/list/LocationTypeBar */
+export async function listLocationTypeBarUsingGET(options?: { [key: string]: any }) {
+  return request<Record<string, any>[]>('/api/sensor/list/LocationTypeBar', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** listMyGroupSensor GET /api/sensor/list/MyGroupSensor */
+export async function listMyGroupSensorUsingGET(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.listMyGroupSensorUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseListSensorVO>('/api/sensor/list/MyGroupSensor', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
     ...(options || {}),
   });
 }
@@ -102,7 +125,7 @@ export async function updateSensorUsingPOST(
 
 /** welcome GET /api/sensor/welcome */
 export async function welcomeUsingGET(options?: { [key: string]: any }) {
-  return request<API.BaseResponseHashMapstringlong>('/api/sensor/welcome', {
+  return request<Record<string, any>>('/api/sensor/welcome', {
     method: 'GET',
     ...(options || {}),
   });

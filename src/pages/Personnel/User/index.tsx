@@ -1,14 +1,14 @@
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { Button, message, Avatar, Modal, Radio , Input} from 'antd';
-import { useRef, useState } from 'react';
+import type {ActionType, ProColumns} from '@ant-design/pro-components';
+import {PageContainer, ProTable} from '@ant-design/pro-components';
+import {Avatar, Button, Input, message, Modal, Radio} from 'antd';
+import {useRef, useState} from 'react';
 import {
   addUserUsingPOST,
   deleteUserUsingPOST,
   listUserUsingGET,
   updateUserUsingPOST,
 } from '@/services/test/userController';
-import { PlusOutlined } from '@ant-design/icons';
+import {PlusOutlined} from '@ant-design/icons';
 import CreateModal from './components/CreateModal';
 import UpdateModal from './components/UpdateModal';
 
@@ -130,11 +130,6 @@ const TableList: React.FC = () => {
         admin: { text: '管理员', status: 'Success' },
       },
     },
-
-    {
-      title: '所属公司',
-      dataIndex: 'company',
-    },
     {
       title: '所属工作组',
       dataIndex: 'workGroup',
@@ -250,10 +245,6 @@ const TableList: React.FC = () => {
       ),
     },
     {
-      title: '所属公司',
-      dataIndex: 'company',
-    },
-    {
       title: '所属工作组',
       dataIndex: 'workGroup',
     },
@@ -348,10 +339,6 @@ const TableList: React.FC = () => {
           <Radio value={1}>女</Radio>
         </Radio.Group>
       ),
-    },
-    {
-      title: '所属公司',
-      dataIndex: 'company',
     },
     {
       title: '所属工作组',

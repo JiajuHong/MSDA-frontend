@@ -5,12 +5,6 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponseHashMapstringlong = {
-    code?: number;
-    data?: Record<string, any>;
-    message?: string;
-  };
-
   type BaseResponseListPost = {
     code?: number;
     data?: Post[];
@@ -23,15 +17,15 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponseListProjectMember = {
+  type BaseResponseListProjectMemberVO = {
     code?: number;
-    data?: ProjectMember[];
+    data?: ProjectMemberVO[];
     message?: string;
   };
 
-  type BaseResponseListSensorInfo = {
+  type BaseResponseListSensorVO = {
     code?: number;
-    data?: SensorInfo[];
+    data?: SensorVO[];
     message?: string;
   };
 
@@ -194,6 +188,29 @@ declare namespace API {
     id?: number;
   };
 
+  type HumidityVO = {
+    date?: string;
+    humidity?: number;
+    name?: string;
+  };
+
+  type listMyGroupSensorUsingGETParams = {
+    created_by?: string;
+    created_time?: string;
+    current?: number;
+    group_name?: string;
+    id?: number;
+    location?: string;
+    name?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    status?: string;
+    structure_name?: string;
+    type?: string;
+    updated_time?: string;
+  };
+
   type listPostByPageUsingGETParams = {
     age?: number;
     contact?: string;
@@ -237,13 +254,14 @@ declare namespace API {
     principal?: string;
     sortField?: string;
     sortOrder?: string;
+    status?: string;
   };
 
   type listProjectMemberByPageUsingGETParams = {
     avatar?: string;
     current?: number;
     pageSize?: number;
-    project_id?: number;
+    project_name?: string;
     sortField?: string;
     sortOrder?: string;
     user_name?: string;
@@ -268,13 +286,14 @@ declare namespace API {
     principal?: string;
     sortField?: string;
     sortOrder?: string;
+    status?: string;
   };
 
   type listSensorByPageUsingGETParams = {
     created_by?: string;
     created_time?: string;
     current?: number;
-    group_id?: number;
+    group_name?: string;
     id?: number;
     location?: string;
     name?: string;
@@ -282,7 +301,7 @@ declare namespace API {
     sortField?: string;
     sortOrder?: string;
     status?: string;
-    structure_id?: number;
+    structure_name?: string;
     type?: string;
     updated_time?: string;
   };
@@ -291,7 +310,7 @@ declare namespace API {
     created_by?: string;
     created_time?: string;
     current?: number;
-    group_id?: number;
+    group_name?: string;
     id?: number;
     location?: string;
     name?: string;
@@ -299,7 +318,7 @@ declare namespace API {
     sortField?: string;
     sortOrder?: string;
     status?: string;
-    structure_id?: number;
+    structure_name?: string;
     type?: string;
     updated_time?: string;
   };
@@ -604,13 +623,18 @@ declare namespace API {
     reviewStatus?: number;
   };
 
+  type PressureVO = {
+    name?: string;
+    pressure?: number;
+    time?: string;
+  };
+
   type ProjectAddRequest = {
     cover?: string;
     description?: string;
     name?: string;
-
-    status?: string;
     principal?: string;
+    status?: string;
   };
 
   type ProjectInfo = {
@@ -621,6 +645,7 @@ declare namespace API {
     isDelete?: number;
     name?: string;
     principal?: string;
+    status?: string;
     updated_time?: string;
   };
 
@@ -630,15 +655,6 @@ declare namespace API {
     id?: number;
     isDelete?: number;
     project_id?: number;
-    updated_time?: string;
-    user_name?: string;
-  };
-
-  type ProjectMemberVO = {
-    avatar?: string;
-    created_time?: string;
-    id?: number;
-    isDelete?: number;
     project_name?: string;
     updated_time?: string;
     user_name?: string;
@@ -657,14 +673,22 @@ declare namespace API {
     user_name?: string;
   };
 
+  type ProjectMemberVO = {
+    avatar?: string;
+    created_time?: string;
+    id?: number;
+    project_name?: string;
+    updated_time?: string;
+    user_name?: string;
+  };
+
   type ProjectUpdateRequest = {
     cover?: string;
     description?: string;
     id?: number;
     name?: string;
-
-    status?: string;
     principal?: string;
+    status?: string;
   };
 
   type SensorAddRequest = {
@@ -683,27 +707,13 @@ declare namespace API {
     created_time?: string;
     error?: number;
     group_id?: number;
-    id?: number;
-    isDelete?: number;
-    location?: string;
-    name?: string;
-    status?: string;
-    structure_id?: number;
-    type?: string;
-    updated_time?: string;
-  };
-
-  type SensorVO = {
-    count?: number;
-    created_by?: string;
-    created_time?: string;
-    error?: number;
     group_name?: string;
     id?: number;
     isDelete?: number;
     location?: string;
     name?: string;
     status?: string;
+    structure_id?: number;
     structure_name?: string;
     type?: string;
     updated_time?: string;
@@ -718,6 +728,19 @@ declare namespace API {
     status?: string;
     structure_name?: string;
     type?: string;
+  };
+
+  type SensorVO = {
+    created_by?: string;
+    created_time?: string;
+    group_name?: string;
+    id?: number;
+    location?: string;
+    name?: string;
+    status?: string;
+    structure_name?: string;
+    type?: string;
+    updated_time?: string;
   };
 
   type StructureAddRequest = {
@@ -741,6 +764,12 @@ declare namespace API {
     id?: number;
     location?: string;
     name?: string;
+  };
+
+  type TemperatureVO = {
+    date?: string;
+    name?: string;
+    temperature?: number;
   };
 
   type User = {

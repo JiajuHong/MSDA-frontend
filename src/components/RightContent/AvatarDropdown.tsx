@@ -1,13 +1,13 @@
-import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Menu, Spin } from 'antd';
-import type { ItemType } from 'antd/lib/menu/hooks/useItems';
-import { stringify } from 'querystring';
-import type { MenuInfo } from 'rc-menu/lib/interface';
-import React, { useCallback } from 'react';
-import { history, useModel } from 'umi';
+import {LogoutOutlined} from '@ant-design/icons';
+import {Avatar, Menu, Spin} from 'antd';
+import type {ItemType} from 'antd/lib/menu/hooks/useItems';
+import {stringify} from 'querystring';
+import type {MenuInfo} from 'rc-menu/lib/interface';
+import React, {useCallback} from 'react';
+import {history, useModel} from 'umi';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
-import { userLogoutUsingPOST } from '@/services/test/userController';
+import {userLogoutUsingPOST} from '@/services/test/userController';
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -74,30 +74,10 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
     ...(menu
       ? [
           {
-            key: 'center',
-            icon: <UserOutlined />,
-            label: '个人中心',
-          },
-          {
-            key: 'settings',
-            icon: <SettingOutlined />,
-            label: '个人设置',
-          },
-          {
             type: 'divider' as const,
           },
         ]
       : []),
-    {
-      key: 'center',
-      icon: <UserOutlined />,
-      label: '个人中心',
-    },
-    {
-      key: 'settings',
-      icon: <SettingOutlined />,
-      label: '个人设置',
-    },
     {
       key: 'logout',
       icon: <LogoutOutlined />,

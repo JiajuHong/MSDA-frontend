@@ -28,6 +28,7 @@ export default [
     name: '项目管理',
     icon: 'audit',
     path: '/project',
+    access: 'canRoot',
     routes: [
       {
         path: '/project/info',
@@ -103,16 +104,10 @@ export default [
     redirect: '/dashboard',
   },
   {
-    name: '工作台',
-    icon: 'smile',
-    path: '/dashboardworkplace',
-    component: './DashboardWorkplace',
-  },
-  {
-    name: '个人中心',
-    icon: 'user',
-    path: '/account/center',
-    component: './Account',
+    name: '组内传感器',
+    icon: 'mac-command',
+    path: '/group-sensor',
+    component: './MyGroupSensors',
   },
   {
     component: './404',

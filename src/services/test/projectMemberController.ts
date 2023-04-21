@@ -53,7 +53,7 @@ export async function listProjectMemberUsingGET(
   params: API.listProjectMemberUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseListProjectMember>('/api/projectMember/list', {
+  return request<API.BaseResponseListProjectMemberVO>('/api/projectMember/list', {
     method: 'GET',
     params: {
       ...params,

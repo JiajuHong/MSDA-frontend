@@ -6,23 +6,23 @@ import {PlusOutlined} from '@ant-design/icons';
 import CreateModal from './components/CreateModal';
 import UpdateModal from './components/UpdateModal';
 import {
-  addWorkGroupUsingPOST,
-  deleteWorkGroupUsingPOST,
-  listWorkGroupUsingGET,
-  updateWorkGroupUsingPOST
-} from "@/services/test/groupController";
+  addSensorUsingPOST,
+  deleteSensorUsingPOST,
+  listMyGroupSensorUsingGET,
+  updateSensorUsingPOST,
+} from '@/services/test/sensorController';
 
 const TableList: React.FC = () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [showDetail] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
-  const [currentRow, setCurrentRow] = useState<API.WorkGroup>();
+  const [currentRow, setCurrentRow] = useState<API.SensorVO>();
 
-  const handleAdd = async (fields: API.WorkGroupAddRequest) => {
+  const handleAdd = async (fields: API.SensorAddRequest) => {
     const hide = message.loading('正在添加');
     try {
-      await addWorkGroupUsingPOST({
+      await addSensorUsingPOST({
         ...fields,
       });
       hide();
@@ -37,7 +37,7 @@ const TableList: React.FC = () => {
     }
   };
 
-  const handleRemove = async (record: API.WorkGroup) => {
+  const handleRemove = async (record: API.SensorVO) => {
     Modal.confirm({
       title: '确认删除？',
       content: '删除后不可恢复',
@@ -48,7 +48,7 @@ const TableList: React.FC = () => {
         if (!record) return true;
 
         try {
-          await deleteWorkGroupUsingPOST({
+          await deleteSensorUsingPOST({
             id: record.id,
           });
           hide();
@@ -64,13 +64,13 @@ const TableList: React.FC = () => {
     });
   };
 
-  const handleUpdate = async (fields: API.WorkGroupUpdateRequest) => {
+  const handleUpdate = async (fields: API.SensorUpdateRequest) => {
     if (!currentRow) {
       return;
     }
     const hide = message.loading('修改中');
     try {
-      await updateWorkGroupUsingPOST({
+      await updateSensorUsingPOST({
         id: currentRow.id,
         ...fields,
       });
@@ -84,23 +84,55 @@ const TableList: React.FC = () => {
     }
   };
 
-  const columns: ProColumns<API.WorkGroup>[] = [
+  const columns: ProColumns<API.SensorVO>[] = [
     {
       title: 'id',
       dataIndex: 'id',
       search: false,
     },
     {
-      title: '工作组名',
+      title: '传感器名',
       dataIndex: 'name',
       copyable: true,
       search: false,
     },
     {
-      title: '创建时间',
-      dataIndex: 'created_time',
-      valueType: 'dateTime',
-      search: false,
+      title: '类型',
+      dataIndex: 'type',
+      valueType: 'select',
+      valueEnum: {
+        '温度传感器': {text: '温度传感器', status: 'Default'},
+        '倾角传感器': {text: '倾角传感器', status: 'Processing'},
+        '湿度传感器': {text: '湿度传感器', status: 'Processing'},
+        '压力传感器': {text: '压力传感器', status: 'Processing'},
+        '水位传感器': {text: '水位传感器', status: 'Processing'},
+        // 可以添加更多的选项
+      },
+    },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      valueType: 'select',
+      valueEnum: {
+        active: {text: '正常', status: 'Success'},
+        inactive: {text: '异常', status: 'Error'},
+      },
+    },
+    {
+      title: '安装位置',
+      dataIndex: 'location',
+    },
+    {
+      title: '所属结构物',
+      dataIndex: 'structure_name',
+    },
+    {
+      title: '创建人',
+      dataIndex: 'created_by',
+    },
+    {
+      title: '所属组',
+      dataIndex: 'group_name',
     },
     {
       title: '创建时间',
@@ -142,44 +174,91 @@ const TableList: React.FC = () => {
     },
   ];
 
-  const addGroupColumns: ProColumns<API.WorkGroupAddRequest>[] = [
+  const addSensorColumns: ProColumns<API.SensorAddRequest>[] = [
     {
-      title: '工作组名',
+      title: '传感器名',
       dataIndex: 'name',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '请输入工作组名',
-          },
-        ],
+      copyable: true,
+      search: false,
+    },
+    {
+      title: '类型',
+      dataIndex: 'type',
+      valueType: 'select',
+      valueEnum: {
+        '温度传感器': {text: '温度传感器', status: 'Default'},
+        '倾角传感器': {text: '倾角传感器', status: 'Processing'},
+        '湿度传感器': {text: '湿度传感器', status: 'Processing'},
+        '压力传感器': {text: '压力传感器', status: 'Processing'},
+        '水位传感器': {text: '水位传感器', status: 'Processing'},
+        // 可以添加更多的选项
       },
+    },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      valueType: 'select',
+      valueEnum: {
+        active: {text: '正常', status: 'Success'},
+        inactive: {text: '异常', status: 'Error'},
+      },
+    },
+    {
+      title: '安装位置',
+      dataIndex: 'location',
+    },
+    {
+      title: '所属结构物',
+      dataIndex: 'structure_name',
+    },
+    {
+      title: '所属工作组',
+      dataIndex: 'group_name',
     },
   ];
 
-  const updateGroupColumns: ProColumns<API.WorkGroupUpdateRequest>[] = [
+  const updateSensorColumns: ProColumns<API.SensorUpdateRequest>[] = [
     {
-      title: '工作组名',
+      title: '传感器名',
       dataIndex: 'name',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '请输入工作组名',
-          },
-        ],
+      copyable: true,
+      search: false,
+    },
+    {
+      title: '类型',
+      dataIndex: 'type',
+    },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      valueType: 'select',
+      valueEnum: {
+        active: {text: '正常', status: 'Success'},
+        inactive: {text: '异常', status: 'Error'},
       },
+    },
+    {
+      title: '安装位置',
+      dataIndex: 'location',
+    },
+    {
+      title: '所属结构物',
+      dataIndex: 'structure_name',
+    },
+    {
+      title: '所属工作组',
+      dataIndex: 'group_name',
     },
   ];
   return (
     <PageContainer>
-      <ProTable<API.WorkGroup>
+      <ProTable<API.SensorVO>
         columns={columns}
         actionRef={actionRef}
         cardBordered
         request={async (params, sort, filter) => {
           console.log(sort, filter);
-          const res = await listWorkGroupUsingGET({ ...params });
+          const res = await listMyGroupSensorUsingGET({...params});
           if (res) {
             return {
               data: res || [],
@@ -230,11 +309,11 @@ const TableList: React.FC = () => {
           onChange: (page) => console.log(page),
         }}
         dateFormatter="string"
-        headerTitle="组管理"
+        headerTitle="传感器管理"
         toolBarRender={() => [
           <Button
             key="button"
-            icon={<PlusOutlined />}
+            icon={<PlusOutlined/>}
             type="primary"
             onClick={() => {
               handleModalVisible(true);
@@ -245,7 +324,7 @@ const TableList: React.FC = () => {
         ]}
       />
       <UpdateModal
-        columns={updateGroupColumns}
+        columns={updateSensorColumns}
         onSubmit={async (value) => {
           const success = await handleUpdate(value);
           if (success) {
@@ -267,7 +346,7 @@ const TableList: React.FC = () => {
       />
 
       <CreateModal
-        columns={addGroupColumns}
+        columns={addSensorColumns}
         onCancel={() => {
           handleModalVisible(false);
         }}
@@ -279,4 +358,5 @@ const TableList: React.FC = () => {
     </PageContainer>
   );
 };
+
 export default TableList;
