@@ -9,7 +9,7 @@ const Page: React.FC = () => {
   }, []);
 
   const asyncFetch = () => {
-    fetch('http://localhost:7529/api/sensor/list/locationType')
+    fetch('http://localhost:7529/api/sensor/list/type')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {

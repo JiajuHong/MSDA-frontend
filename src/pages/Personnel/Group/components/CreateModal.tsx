@@ -1,6 +1,6 @@
-import type { ProColumns } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
-import { Modal } from 'antd';
+import type {ProColumns} from '@ant-design/pro-components';
+import {ProTable} from '@ant-design/pro-components';
+import {Modal} from 'antd';
 import React from 'react';
 
 export type Props = {
@@ -14,7 +14,7 @@ const CreateModal: React.FC<Props> = (props) => {
   const { visible, columns, onCancel, onSubmit } = props;
 
   return (
-    <Modal visible={visible} footer={null} onCancel={() => onCancel?.()}>
+    <Modal title='新增工作组' visible={visible} footer={null} onCancel={() => onCancel?.()}>
       <ProTable
         type="form"
         columns={columns}

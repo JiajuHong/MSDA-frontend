@@ -15,7 +15,7 @@ const Welcome : React.FC = () => {
   }, []);
 
   const asyncFetch = () => {
-    fetch('http://localhost:7529/api/sensor/welcome')
+    fetch('http://localhost:7529/api/sensor/data-overview')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => {
@@ -91,8 +91,6 @@ const Welcome : React.FC = () => {
               }
             />
           </ProCard>
-
-
         </ProCard>
       </RcResizeObserver>
     </PageContainer>

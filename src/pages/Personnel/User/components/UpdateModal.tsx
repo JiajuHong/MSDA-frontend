@@ -1,7 +1,7 @@
-import type { ProColumns, ProFormInstance } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
-import { Modal } from 'antd';
-import React, { useEffect, useRef } from 'react';
+import type {ProColumns, ProFormInstance} from '@ant-design/pro-components';
+import {ProTable} from '@ant-design/pro-components';
+import {Modal} from 'antd';
+import React, {useEffect, useRef} from 'react';
 
 export type Props = {
   values: API.UserVO;
@@ -23,7 +23,7 @@ const UpdateModal: React.FC<Props> = (props) => {
   }, [values]);
 
   return (
-    <Modal visible={visible} footer={null} onCancel={() => onCancel?.()}>
+    <Modal title='修改人员' visible={visible} footer={null} onCancel={() => onCancel?.()}>
       <ProTable
         type="form"
         formRef={formRef}

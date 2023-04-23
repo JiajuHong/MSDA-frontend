@@ -11,7 +11,7 @@ import {stringify} from "querystring";
  */
 const request = extend({
   credentials: 'include', // 默认请求是否带上cookie
-  prefix:process.env.NODE_ENV === 'production' ? 'http://192.168.1.3:7529' : undefined,
+  prefix:process.env.NODE_ENV === 'production' ? 'http://master:7529' : undefined,
   // requestType: 'form',
 });
 
