@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Line } from '@ant-design/plots';
+import React, {useEffect, useState} from 'react';
+import {Line} from '@ant-design/plots';
 
 const Temp_history: React.FC = () => {
   const [data, setData] = useState([]);

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Area } from '@ant-design/plots';
+import React, {useEffect, useState} from 'react';
+import {Area} from '@ant-design/plots';
 
 const Humi_history: React.FC = () => {
   const [data, setData] = useState([]);
