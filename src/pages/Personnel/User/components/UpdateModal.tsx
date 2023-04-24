@@ -23,7 +23,7 @@ const UpdateModal: React.FC<Props> = (props) => {
   }, [values]);
 
   return (
-    <Modal title='修改人员' visible={visible} footer={null} onCancel={() => onCancel?.()}>
+    <Modal title='修改用户' visible={visible} footer={null} onCancel={() => onCancel?.()}>
       <ProTable
         type="form"
         formRef={formRef}

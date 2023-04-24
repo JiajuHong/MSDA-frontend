@@ -14,7 +14,7 @@ const CreateModal: React.FC<Props> = (props) => {
   const { visible, columns, onCancel, onSubmit } = props;
 
   return (
-    <Modal title='新增人员' visible={visible} footer={null} onCancel={() => onCancel?.()}>
+    <Modal title='新增用户' visible={visible} footer={null} onCancel={() => onCancel?.()}>
       <ProTable
         type="form"
         columns={columns}

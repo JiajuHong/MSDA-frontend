@@ -87,7 +87,7 @@ export default [
     routes: [
       {
         path: '/personnel/user',
-        name: '人员管理',
+        name: '用户管理',
         icon: 'user',
         component: './Personnel/User',
       },

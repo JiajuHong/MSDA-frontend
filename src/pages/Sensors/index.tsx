@@ -1,8 +1,8 @@
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { PageContainer, ProTable } from '@ant-design/pro-components';
+import type {ActionType, ProColumns} from '@ant-design/pro-components';
+import {PageContainer, ProTable} from '@ant-design/pro-components';
 import {Button, message, Modal} from 'antd';
-import { useRef, useState } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
+import {useRef, useState} from 'react';
+import {PlusOutlined} from '@ant-design/icons';
 import CreateModal from './components/CreateModal';
 import UpdateModal from './components/UpdateModal';
 import {
@@ -46,7 +46,6 @@ const TableList: React.FC = () => {
       onOk: async () => {
         const hide = message.loading('正在删除');
         if (!record) return true;
-
         try {
           await deleteSensorUsingPOST({
             id: record.id,
